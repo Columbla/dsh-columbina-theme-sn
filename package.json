@@ -1,0 +1,45 @@
+﻿{
+  "name": "dsh-columbina-theme-sn",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Columbina themed glassmorphism skin for DeepSeek Harness — patch edition: theme-takeover switch, background upload with blur/clarity sliders, editable hero title.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "stickers.json",
+    "Background",
+    "meme/*.md",
+    "tools/*.mjs",
+    "test",
+    "README.md",
+    "NOTICE.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "theme",
+    "skin",
+    "persona",
+    "columbina"
+  ],
+  "license": "MIT"
+}
