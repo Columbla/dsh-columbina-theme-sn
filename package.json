@@ -1,6 +1,6 @@
 {
   "name": "dsh-columbina-theme-sn",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Columbina themed glassmorphism skin for DeepSeek Harness — patch edition: theme-takeover switch, background upload with blur/clarity sliders, editable hero title.",
   "type": "module",
