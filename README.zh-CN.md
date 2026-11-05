@@ -178,6 +178,8 @@ await manager.setPluginEnabled(rival.entryId, !takeover)
 | 深色主文字偏淡 | `#acabf2` 在本主题更深的底上只有 5.99:1（低于自定 7:1，高于 AA 4.5:1） | 换成同色系 `#c3c2fb`（7.55:1） |
 | 中文文件名上传后变成 `custom-xxxx` | 请求体没按 UTF-8 编码，文件名被剥成空 | 浏览器 `fetch` 默认正确；脚本上传请带 `charset=utf-8` |
 
+「切背景 / 拖模糊没反应」这类问题的完整复现手册：[docs/repro-background-not-changing.zh-CN.md](docs/repro-background-not-changing.zh-CN.md)（中文）· [English](docs/repro-background-not-changing.md)。
+
 ## 兼容性
 
 | 项目 | 说明 |

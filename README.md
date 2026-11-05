@@ -178,6 +178,8 @@ To use your own images: drop them into `Background/` and refresh; name sticker f
 | Dark primary text looks faint | `#acabf2` reaches 5.99:1 on this theme's darker backdrop (below the 7:1 the upstream targets, above AA 4.5:1) | Use `#c3c2fb` instead (7.55:1) |
 | A CJK filename became `custom-xxxx` on upload | The request body was not UTF-8, so the name was stripped | Browsers are fine; scripts must send `charset=utf-8` |
 
+Full reproduction guide for the "background / blur does nothing" class of bugs: [docs/repro-background-not-changing.md](docs/repro-background-not-changing.md) (English) · [中文版](docs/repro-background-not-changing.zh-CN.md).
+
 ## Compatibility
 
 | Item | Notes |
