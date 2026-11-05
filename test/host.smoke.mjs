@@ -310,13 +310,15 @@ ok('打开后约定又回来了', rs5.statusCode === 200 && lastSection(A).text.
 const rh1 = await get()
 const heroState = JSON.parse(rh1.body).value.hero
 ok(
-  'GET /columbina/state 带 hero（默认形象 + 欢迎语 + 就绪状态 + 字节地址）',
+  'GET /columbina/state 默认不带形象（空 image → 未就绪）',
   heroState !== null && typeof heroState === 'object' &&
-    heroState.image === 'meme/星眸.png' &&
+    heroState.image === '' &&
     heroState.title === '今天的 token，能分我一口吗？' &&
-    heroState.ready === true && heroState.url === '/columbina/hero',
+    heroState.ready === false && heroState.url === null,
   heroState,
 )
+const rhSet = await post({ hero: { image: 'meme/星眸.png' } })
+ok('手动指定形象后进入就绪', JSON.parse(rhSet.body).value.hero.ready === true, JSON.parse(rhSet.body).value.hero)
 const rh2 = makeRes()
 await route.handler(makeReq('GET', '/columbina/hero'), rh2)
 ok(

@@ -96,7 +96,7 @@ dsh plugin --profile desktop remove dsh-columbina-theme-sn
   "stickerSize": 128,
   "customStickers": [],
   "stickerOverrides": {},
-  "hero": { "image": "meme/星眸.png", "title": "今天的 token，能分我一口吗？" },
+  "hero": { "image": "", "title": "今天的 token，能分我一口吗？" },
   "background": {
     "enabled": true, "current": "01-columbina-light.png",
     "rotate": false, "interval": 90, "dim": 0.6, "blur": 0
@@ -152,7 +152,7 @@ await manager.setPluginEnabled(rival.entryId, !takeover)
 
 | 位置 | 内容 |
 | --- | --- |
-| `meme/` | 12 张哥伦比娅表情（WebP）+ 欢迎页头像 `星眸.png` |
+| `meme/` | 12 张哥伦比娅表情（WebP）+ 可选的欢迎页头像 `星眸.png`（**默认不启用**） |
 | `Background/` | 3 张预设：`01-columbina-light.png`、`02-columbina-dark.png`、`03-columbina-dusk.jpg` |
 
 这些图片**不在 MIT 范围内**。角色形象与官方表情版权归 **miHoYo / HoYoverse**，头像与背景图归各自原作者。仅限**非商业同人使用**；权利人要求即删除。详见 [NOTICE.md](NOTICE.md)。

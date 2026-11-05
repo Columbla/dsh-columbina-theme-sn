@@ -96,7 +96,7 @@ The state file lives at `$DSH_HOME/columbina-theme.json`, or `~/.dsh/columbina-t
   "stickerSize": 128,
   "customStickers": [],
   "stickerOverrides": {},
-  "hero": { "image": "meme/星眸.png", "title": "今天的 token，能分我一口吗？" },
+  "hero": { "image": "", "title": "今天的 token，能分我一口吗？" },
   "background": {
     "enabled": true, "current": "01-columbina-light.png",
     "rotate": false, "interval": 90, "dim": 0.6, "blur": 0
@@ -152,7 +152,7 @@ The repo ships a default asset set so it looks complete out of the box:
 
 | Path | Content |
 | --- | --- |
-| `meme/` | 12 Columbina stickers (WebP) + hero avatar `星眸.png` |
+| `meme/` | 12 Columbina stickers (WebP) + an optional hero avatar `星眸.png` (shipped, **not used by default**) |
 | `Background/` | 3 presets: `01-columbina-light.png`, `02-columbina-dark.png`, `03-columbina-dusk.jpg` |
 
 These images are **not** covered by MIT. Character art and official stickers belong to **miHoYo / HoYoverse**; the avatar and backgrounds belong to their respective artists. Non-commercial fan use only — open an issue and the assets will be removed on request. See [NOTICE.md](NOTICE.md).
