@@ -16,6 +16,7 @@ This theme is pure CSS rendered by your browser, so the final look depends on yo
 - **High DPI** (125% / 150% / 200%) changes how the 72px avatar, 1px borders and 2px letter-spacing read; screenshot pixels are not CSS pixels.
 - **Wide-gamut displays / colour management** make saturated purples such as `#78007a` look brighter or duller. The "same colour" never is, across screens.
 - **Fonts**: the hero title prefers Source Han Serif / STSong and falls back to a system serif, which changes metrics.
+- **Host wallpaper overlay**: if your Harness frontend ships its own full-screen wallpaper layer (e.g. `#dsh-wall-layer`, opaque, `z-index:0`), it paints over this theme's `z-index:-1` background layer. Since v0.2.2 the theme hides that layer while its own background image is active, and restores it in plain mode.
 
 Screenshots are illustrative, not a guarantee of pixel-identical rendering.
 截图仅供参考，不构成「装完必然长这样」的承诺。
@@ -43,7 +44,8 @@ Everything else (persona section, sticker manifest, fenced routes, slot registra
 
 ## Install
 
-Requires a DSH desktop or web profile that loads client plugins; verified on **DSH 0.2.1-rc.2**.
+Requires a DSH desktop or web profile that loads client plugins; verified on **DSH 0.2.1-rc.2** (the Linux report also passed on 0.2.0-rc.2).
+`dsh plugin` needs **pnpm** on PATH; if it fails with `spawn pnpm ENOENT`, run `corepack enable pnpm` first.
 需要能正常加载客户端插件的 desktop / web profile；验证于 0.2.1-rc.2。
 
 ```powershell
@@ -165,6 +167,8 @@ To use your own images: drop them into `Background/` and refresh; name sticker f
 | --- | --- | --- |
 | Hero avatar comes back after a restart | Before the state arrives `heroReady` defaults to `true`, so the browser paints a cached avatar | Fixed: nothing is rendered while `heroKey` is empty |
 | Swapped avatar still shows the old image | `/columbina/hero` sends `Cache-Control: max-age=300` | Fixed: the URL carries `?v=<path>` |
+| Switching the background image or dragging blur does nothing | The host frontend draws its own opaque wallpaper layer (`#dsh-wall-layer`) above this theme's `z-index:-1` layer | Fixed in v0.2.2: that layer is hidden while the theme background is active |
+| `dsh plugin add` rejected with `Unexpected token '\uFEFF'` | `package.json` was saved with a UTF-8 BOM, which `JSON.parse` rejects | Fixed in v0.2.2; `.gitattributes` keeps it from coming back |
 | Viewer text refused to change colour | The plain preview has its own green `#2b8a3e`; a container `color` loses | Fixed: pinned on `pre[class*="_plain"]` (`!important`, plain renderer only) |
 | Two themes fight over colours | Both override `--dsw-alias-*`, last one wins | Turn on theme takeover |
 | Whole window goes blurry | `backdrop-filter` on `[data-shell-overlay]`, which covers the frame | Only blur the direct children of floating layers |
