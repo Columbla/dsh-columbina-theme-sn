@@ -78,8 +78,7 @@ document.querySelector('.colu-bg-img[data-active="1"]')?.style.backgroundImage
 .colu-bg{ position:fixed; inset:0; z-index:-1; }
 ```
 
-`-1 < 0` + 不透明 ⇒ 主题背景层整层被盖住。本机真实来源：`dsh-web-frontend/dist/index.html` 无条件引入
-`wallpaper.css` / `wallpaper.js`（`wallpaper.js:14` 默认 `mode='static'`，`:177` 挂到 body 上）。
+`-1 < 0` + 不透明 ⇒ 主题背景层整层被盖住。常见来源：经过本地改造或厂商定制的宿主前端，在页面加载时无条件插入一层全屏壁纸（`position:fixed; inset:0; z-index:0`，背景不透明）。
 
 修复（v0.2.2 起随主题发布，只改客户端 CSS）：
 
@@ -92,13 +91,7 @@ body[data-dsh-columbina][data-columbina-skin="on"][data-colu-bg="on"] #dsh-wall-
 - 只作用于「主题开 + 背景启用」；切「简约（无图）」时外来层自动回来
 - client-only ⇒ **F5 即生效**，不用重启 `dsh web`
 
-**临时绕过（不打补丁）**：把外来壁纸关掉即可，例如
-
-```js
-localStorage.setItem('dsh.wall.mode','none'); location.reload()
-```
-
-或点宿主自己的壁纸按钮选「不要壁纸」。
+**临时绕过（不打补丁）**：把宿主的壁纸层关掉 —— 用它自己的菜单或设置项（有些构建会存在 `localStorage` 里、加载时再读）。
 
 ---
 

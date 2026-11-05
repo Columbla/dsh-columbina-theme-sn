@@ -78,7 +78,7 @@ Environment: Linux, `dsh 0.2.0-rc.2`, `dsh web --port <p>`; Chromium-based brows
 .colu-bg{ position:fixed; inset:0; z-index:-1; }
 ```
 
-`-1 < 0` plus opacity ⇒ the whole theme background layer is covered. On the test machine the source was `dsh-web-frontend/dist/index.html` pulling in `wallpaper.css` / `wallpaper.js` unconditionally (`wallpaper.js:14` defaults to `mode='static'`, `:177` mounts it on `body`).
+`-1 < 0` plus opacity ⇒ the whole theme background layer is covered. Typical source: a locally patched or vendor-modified frontend that injects a full-screen wallpaper layer unconditionally on page load (an element with `position:fixed; inset:0; z-index:0` and an opaque background).
 
 Fix (shipped since v0.2.2, client CSS only):
 
@@ -91,13 +91,7 @@ body[data-dsh-columbina][data-columbina-skin="on"][data-colu-bg="on"] #dsh-wall-
 - Only applies when "theme on + background enabled"; plain mode (no image) brings the foreign layer back
 - Client-only ⇒ **F5 is enough**, no `dsh web` restart
 
-**Temporary workaround (without patching)**: turn the foreign wallpaper off, e.g.
-
-```js
-localStorage.setItem('dsh.wall.mode','none'); location.reload()
-```
-
-or pick "no wallpaper" in the host's own wallpaper menu.
+**Temporary workaround (without patching)**: turn the host's wallpaper layer off — use its own menu/setting, or whatever switch it exposes (some builds keep it in `localStorage` and re-read it on load).
 
 ---
 
