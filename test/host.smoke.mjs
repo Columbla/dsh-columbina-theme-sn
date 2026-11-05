@@ -354,6 +354,19 @@ const rh8 = await post({ hero: { image: 'meme/星眸.png', title: '今天的 tok
 const backHero = JSON.parse(rh8.body).value.hero
 ok('改回默认形象后重新就绪', backHero.ready === true && backHero.url === '/columbina/hero', backHero)
 
+// ── 7d-2. 欢迎页正文：默认空 / 多行原样保存 / 超长截断
+ok('欢迎页正文默认是空串', heroState.body === '', heroState.body)
+const bodyLines = '今晚的月色很好。\n第二行：可以写多行。\n  第三行保留缩进。'
+const rhb1 = await post({ hero: { body: bodyLines } })
+const bodyState = JSON.parse(rhb1.body).value.hero
+ok('欢迎页正文能写多行且原样保留', bodyState.body === bodyLines, bodyState.body)
+ok('欢迎页正文已落盘', (await readStateFile()).hero.body === bodyLines)
+const rhb2 = await post({ hero: { body: 'A'.repeat(3000) } })
+const clipped = JSON.parse(rhb2.body).value.hero.body
+ok('超长正文按 2000 字截断', clipped.length === 2000, clipped.length)
+const rhb3 = await post({ hero: { body: '' } })
+ok('清空正文后回到空串', JSON.parse(rhb3.body).value.hero.body === '')
+
 // ── 7e. 表情包管理：自添加 / 删除 / 大小（写入口也走 rev 闸门）
 const revNow = async () => JSON.parse((await get()).body).value.rev
 async function writeTo(path, payload) {

@@ -33,6 +33,7 @@ This patched edition adds a theme-takeover switch, background upload, blur/clari
 | **Background upload** | Upload from the panel; files land in `Background/` and become the anchor. Hover `×` on a thumbnail to delete (with confirm). Never overwrites existing files, duplicates get a suffix. |
 | **Blur & clarity** | Two independent sliders: blur 0–40px (preview while dragging, persist on release; the layer scales by `1 + radius/200` to hide the soft edge) and clarity, the positive phrasing of the veil opacity. |
 | **Editable hero title** | The title lives in the state file and is editable from the panel. Empty `hero.image` hides the avatar entirely, leaving one line of text. |
+| **Editable welcome page** | Title and a multi-line body are both editable from the panel (v0.3.0). An empty body renders nothing at all; an empty title falls back to the built-in line. |
 | **Font palette** | Label tokens now use hyposelen1a's palette: `#78007a` light, `#acabf2` dark, with secondary/tertiary derived at 0.82 / 0.6 alpha. The hero gradient follows. |
 | **Viewer text colour** | The plain-text preview ships its own green (`#2b8a3e`) that a container-level `color` cannot beat, so it is pinned on `pre[class*="_plain"]`. Syntax-highlighted spans keep their own colours. |
 | **Hero image cache** | The image URL carries `?v=<path>` so `Cache-Control: max-age=300` cannot serve a stale avatar after a swap. |
@@ -96,7 +97,7 @@ The state file lives at `$DSH_HOME/columbina-theme.json`, or `~/.dsh/columbina-t
   "stickerSize": 128,
   "customStickers": [],
   "stickerOverrides": {},
-  "hero": { "image": "", "title": "今天的 token，能分我一口吗？" },
+  "hero": { "image": "", "title": "今天的 token，能分我一口吗？", "body": "" },
   "background": {
     "enabled": true, "current": "01-columbina-light.png",
     "rotate": false, "interval": 90, "dim": 0.6, "blur": 0
@@ -115,6 +116,7 @@ The state file lives at `$DSH_HOME/columbina-theme.json`, or `~/.dsh/columbina-t
 | `customStickers` / `stickerOverrides` | User-added entries / renames and hiding of bundled ones |
 | `hero.image` | In-package relative path; **empty hides the avatar** |
 | `hero.title` | The hero line |
+| `hero.body` | Multi-line text under the title, rendered with `white-space: pre-wrap` (max 2000 chars); empty hides the whole block |
 | `background.dim` | Veil opacity 0–0.95, higher is paler; the panel's "clarity" = `1 - dim` |
 | `background.blur` | Blur radius 0–40px |
 | `rev` | Write revision; bump it when editing by hand |

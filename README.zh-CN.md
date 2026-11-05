@@ -33,6 +33,7 @@
 | **背景图上传** | 面板里选图上传，落进 `Background/` 并自动设为起点；缩略图右上角 `×` 可删（带确认）。重名不覆盖，自动加序号。 |
 | **模糊 / 清晰度** | 两条独立滑杆：模糊 0–40px（拖动预览、松手落盘，图层按 `1 + 半径/200` 放大以盖住糊边）；清晰度是色纱浓度的正向表述。 |
 | **可改欢迎标题** | 标题存在状态文件里，面板可改。`hero.image` 置空则整块头像不渲染，只留一行字。 |
+| **可改欢迎页内容** | 标题 + 多行正文都能在面板里改（v0.3.0）。正文留空则整块不渲染；标题留空回落到内置那一句。 |
 | **字体配色** | label token 换成 hyposelen1a 版：浅色 `#78007a`、深色 `#acabf2`，次级/三级按 0.82 / 0.6 透明度派生；欢迎语渐变同步。 |
 | **右侧查看区正文色** | 预览器的纯文本块自带绿色（`#2b8a3e`），容器级 `color` 压不住，因此直接钉到 `pre[class*="_plain"]`；语法高亮的行内彩色不受影响。 |
 | **头像缓存** | 形象地址带 `?v=<路径>`，避免 `Cache-Control: max-age=300` 在换图后仍显示旧头像。 |
@@ -96,7 +97,7 @@ dsh plugin --profile desktop remove dsh-columbina-theme-sn
   "stickerSize": 128,
   "customStickers": [],
   "stickerOverrides": {},
-  "hero": { "image": "", "title": "今天的 token，能分我一口吗？" },
+  "hero": { "image": "", "title": "今天的 token，能分我一口吗？", "body": "" },
   "background": {
     "enabled": true, "current": "01-columbina-light.png",
     "rotate": false, "interval": 90, "dim": 0.6, "blur": 0
@@ -115,6 +116,7 @@ dsh plugin --profile desktop remove dsh-columbina-theme-sn
 | `customStickers` / `stickerOverrides` | 自加条目 / 包内条目的改名与隐藏 |
 | `hero.image` | 包内相对路径；**空串不显示头像** |
 | `hero.title` | 欢迎页那行字 |
+| `hero.body` | 标题下面的多行正文，按 `white-space: pre-wrap` 渲染（上限 2000 字）；空串则整块不显示 |
 | `background.dim` | 色纱浓度 0–0.95，越高越淡；面板「清晰度」= `1 - dim` |
 | `background.blur` | 模糊半径 0–40px |
 | `rev` | 写入版本号，手工改文件记得一起调大 |
